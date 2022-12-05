@@ -3,6 +3,7 @@ import requests
 import sqlite3
 import PIL.Image as Image
 import io
+import json
 
 class MyClient(discord.Client):
     def __init__(self, *, intents, **options) -> None:
@@ -80,4 +81,7 @@ intents.message_content = True
 
 client = MyClient(intents=intents)
 
-client.run("MTAxOTQzOTQyNDEwMDExMDM1Nw.GeSZPp.LgR6JbFaT5JYSCYq-MIgdYVq6MWAaJ6T-ovUrA")
+with open("config.json") as f:
+    config = json.load(f)
+
+client.run(config["APP"]["TOKEN"])
